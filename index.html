@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Monster Battle</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body background="assets/images/great_wave.jpg">
+	<div class="container">
+		<h1>Monster Battle</h1>
+		<hr>
+		<h2 id="battlePrompt">Select a Fighter</h2>
+
+		<!-- =====================================
+				ROW 1- Monster Selection
+		===================================== -->
+		<div id="monsterSelection" class="row">
+			
+			<!-- ==============================
+					Monster 1 -->
+			<div class="monsterDiv col-lg-3">
+				<img class="monster" src="assets/images/monster1.jpg">
+			</div>
+
+			<!-- ==============================
+					Monster 2 -->
+			<div class="monsterDiv  col-lg-3">
+				<img class="monster" src="assets/images/monster2.jpg">
+			</div>
+
+			<!-- ==============================
+					Monster 3 -->
+			<div class="monsterDiv  col-lg-3">
+				<img class="monster" src="assets/images/monster3.jpg">
+			</div>
+
+			<!-- ==============================
+					Monster 4 -->
+			<div class="monsterDiv  col-lg-3">
+				<img class="monster" src="assets/images/monster4.jpg">
+			</div>
+			
+		</div> <!-- Close Row 1 -->
+		<hr>
+
+		<!-- =====================================
+				ROW 2- Battleground
+		===================================== -->
+		<div id="battleGround" class="row">
+			<div id="attackerDiv" class="col-lg-6  bgBox">
+				
+			</div>
+
+			<div id="defenderDiv" class="col-lg-6  bgBox">
+				
+			</div>
+			
+		</div> <!-- Close Row 2- Battleground -->
+
+	<!-- =====================================
+				ROW 3- Attack button
+		===================================== -->
+		<div id="attackDisplay" class="row">
+			<div class="col-lg-4">
+				<h3>Health: 
+					<p id="yourHealthDisplay"></p>
+				</h3>
+			</div>
+
+			<div class="col-lg-4">
+				<button id="attackButton">ATTACK!!</button>
+			</div>
+
+			<div class="col-lg-4">
+				<h3>Health: 
+					<p id="theirHealthDisplay"></p>
+				</h3>
+			</div>
+
+		</div>
+
+	</div> <!-- Close Container -->
+
+	<!-- =====================================
+				Javascript
+		===================================== -->
+	<script type="text/javascript">
+		var selectAttacker = true;
+
+		function reset() {
+
+		}
+
+		//Click a monster to select an attacker and defender
+		$(".monster").on("click", function(){
+		if (selectAttacker === true) {
+			$("#attackerDiv").html(this);
+			selectAttacker = false;
+			$("#battlePrompt").text("Select a Defender!");
+		} else if (selectAttacker === false){
+			$("#defenderDiv").html(this);
+			$("#monsterSelection").slideUp();
+			$("#battlePrompt").text("Fight!");
+		}
+});
+		
+
+	</script>
+
+</body>
+</html>
+
+
+<!-- -Create all characters and give them health and damage attributes
+-on click, add the character to the attack div
+-on second click, add a character to the defender div
+-display health of both characters in their respectiv divs
+-on button click subtract character's attack power from each other's  -->
+
+
+
+
+
+
+
+
+
