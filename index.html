@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Monster Battle</title>
 
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.css"></link>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Bungee|Finger+Paint|Shojumaru" rel="stylesheet"></link>
 </head>
 
 <body background="assets/images/great_wave.jpg">
@@ -67,22 +69,21 @@
 				ROW 3- Attack button
 		===================================== -->
 		<div id="attackDisplay" class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-4 progressDiv">
 				<h3>Health: 
 					<p id="yourHealthDisplay"></p>
 				</h3>
 			</div>
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 progressDiv">
 				<button id="attackButton">ATTACK!!</button>
 			</div>
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 progressDiv">
 				<h3>Health: 
 					<p id="theirHealthDisplay"></p>
 				</h3>
 			</div>
-
 		</div>
 
 	</div> <!-- Close Container -->
@@ -92,25 +93,59 @@
 		===================================== -->
 	<script type="text/javascript">
 		var selectAttacker = true;
+		var attackerHealth = 100;
+		var defenderHealth = 100;
 
 		function reset() {
+			attackerHealth = 100;
+			defenderHealth = 100;
+		}
 
+		function genMultiplier() {
+			var randomMultiplier = Math.floor(Math.random()*(10)+1);
+			return randomMultiplier;
 		}
 
 		//Click a monster to select an attacker and defender
 		$(".monster").on("click", function(){
 		if (selectAttacker === true) {
 			$("#attackerDiv").html(this);
+			$(this).addClass("attacker");
+			console.log("Attacker class of: " + $(this).attr("class"));
 			selectAttacker = false;
 			$("#battlePrompt").text("Select a Defender!");
-		} else if (selectAttacker === false){
+		} 
+
+		else if (selectAttacker === false){
 			$("#defenderDiv").html(this);
+			$(this).addClass("defender");
+			console.log("Defender class of: " + $(this).attr("class"));
 			$("#monsterSelection").slideUp();
 			$("#battlePrompt").text("Fight!");
+			$("#yourHealthDisplay").text(attackerHealth);
+			$("#theirHealthDisplay").text(defenderHealth);
 		}
 });
-		
 
+		$("#attackButton").on("click", function() {
+			if (selectAttacker === false){
+				$(".attacker").animate({left: "10px"});
+				attackerHealth = attackerHealth - genMultiplier();
+				defenderHealth = defenderHealth - genMultiplier();
+				$("#yourHealthDisplay").text(attackerHealth);
+				$("#theirHealthDisplay").text(defenderHealth);
+		
+				if (defenderHealth <= 0) {
+					$(".defender").fadeOut();
+					alert("YOU WIN!");
+					location.reload();
+				} else if (attackerHealth <= 0) {
+					$(".attacker").fadeOut();
+					alert("YOU LOST, DUMMY!");
+					location.reload();
+				};
+			};
+	});
 	</script>
 
 </body>

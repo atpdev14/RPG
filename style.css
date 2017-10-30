@@ -5,6 +5,8 @@ body {
 h1, h2 {
 	text-align: center;
 	text-decoration: underline;
+	font-family: 'Shojumaru', cursive;
+	font-family: 'Finger Paint', cursive;
 }
 
 #battleground {
@@ -15,8 +17,21 @@ h1, h2 {
 	display: inline;
 	box-sizing: border-box;
 	width: 200px;
-	height: 300px;
+	height: 250px;
 	margin: auto;
+	border-style: solid;
+	border-width: 3px;
+	border-color: burlywood;
+}
+
+.progressDiv {
+	display: inline;
+	box-sizing: border-box;
+	height: 70px;
+	margin: auto;
+	border-style: solid;
+	border-width: 3px;
+	border-color: burlywood;
 }
 
  .col-lg-3, .col-lg-6, .col-lg-4 {
@@ -25,17 +40,21 @@ h1, h2 {
  }
 
  .bgBox {
+ 	/*height: 227px;*/
+ 	overflow: auto;
  	box-sizing: border-box;
- 	margin: 5px;
- 	width: 85%;
+ 	border-style: solid;
+	border-width: 3px;
+	border-color: burlywood;
+	margin-bottom: 5px;
  }
 
-
-.monster {
+.monster, .attacker, .defender {
 	display: block;
 	width: 150px;
 	height: auto;
 	margin: auto;
+	margin-top: 5px;
 	text-align: center;
 	padding: auto;
 
@@ -46,4 +65,13 @@ h1, h2 {
 	border-style: solid;
 	border-width: 3px;
 	border-color: lemonchiffon;
+}
+
+#yourHealthDisplay, #theirHealthDisplay {
+	display: inline;
+}
+
+#attackButton {
+	margin: auto;
+	text-align: center;
 }
